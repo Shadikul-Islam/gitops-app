@@ -1,7 +1,8 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: metallb
+  namespace: metallb-system
 spec:
   interval: 5m
   chart:
@@ -12,12 +13,5 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-      interval: 5m
   values:
-    installCRDs: true
-    configInline:
-      address-pools:
-      - name: default
-        protocol: layer2
-        addresses:
-        - 192.168.26.225-192.168.26.235
+    configInline: {}
